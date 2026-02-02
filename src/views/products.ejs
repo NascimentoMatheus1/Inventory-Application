@@ -3,16 +3,58 @@
 <%- include('./partials/head') %>
 
     <body>
-        <h1>products page</h1>
-        <a href="/">Home</a>
+        <%- include('./partials/navBar') %>
+            <main class="container">
+                <header class="page-header">
+                    <h1>Our Products</h1>
+                    <a href="/products/new" class="btn-add-main">
+                        <span>+</span> Add New Product
+                    </a>
+                    <section class="filter-bar">
+                        <form action="/products" method="GET" class="filter-form">
 
-        <ul>
-            <% products.map((item)=> { %>
-                <li>
-                    <%= item.name %>
-                </li>
-            <% })%>
-        </ul>
+                            <div class="filter-group">
+                                <label for="sort">Sort by:</label>
+                                <select name="sort" id="sort" onchange="this.form.submit()">
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                    <option value="price_low">Price (Low to High)</option>
+                                    <option value="price_high">Price (High to Low)</option>
+                                </select>
+                            </div>
+
+                            <div class="filter-group">
+                                <label for="category">Category:</label>
+                                <select name="category" id="category" onchange="this.form.submit()">
+                                    <option value="all">All Categories</option>
+                                    <% categories.map((item)=> { %>
+                                        <option value="<%= item.name %>">
+                                            <%= item.name %>
+                                        </option>
+                                        <% }) %>
+                                </select>
+                            </div>
+
+                        </form>
+                    </section>
+                </header>
+                <div class="product-grid">
+                    <% products.map((item)=> { %>
+                        <div class="product-card">
+                            <img src="<%= item.image_url %>" alt="<%= item.name %> Icon">
+                            <div class="product-info">
+                                <h2 class="name">
+                                    <%= item.name %>
+                                </h2>
+                                <p class="price">$<%= item.sale_price %>
+                                </p>
+                                <p class="stock">Quantity: <%= item.current_stock %>
+                                </p>
+                            </div>
+                        </div>
+                        <% })%>
+                </div>
+            </main>
     </body>
 
 </html>
