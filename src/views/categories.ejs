@@ -11,7 +11,7 @@
                 </a>
                 <div class="category-grid">
                     <% categories.map((item)=> { %>
-                        <a href="/products?category=<%= item.name %>" class="category-card">
+                        <a href="/categories/<%= item.id %>" class="category-card">
                             <img src="/assets/category.svg" alt="<%= item.name %>">
                             <div class="category-overlay">
                                 <h2>

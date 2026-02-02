@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+    <body>
+        <%- include('./partials/navBar') %>
+            <div class="category-detail-container">
+                <h1>Category Details</h1>
+                <div class="category-detail">
+                    <div class="imageContainer">
+                        <img src="/assets/category-v2.svg" alt="category icon">
+                    </div>
+                    <h3>
+                        <%= category.name %>
+                    </h3>
+                    <p>
+                        <%= category.description %>
+                    </p>
+
+                    <div class="category-actions">
+                        <a href="/categories/update/<%= category.id %>" class="btn btn-update">Update</a>
+                        <a href="/categories/delete/<%= category.id %>" class="btn btn-delete">Delete</a>
+                    </div>
+                </div>
+            </div>
+
+    </body>
+
+</html>
