@@ -1,15 +1,96 @@
-const db = require('../db/queries');
+const db = require('../db/categoryQueries');
+const { body, validationResult, matchedData } = require('express-validator');
 
 const getAllCategories = async (req, res) => {
     try {
         const categories = await db.getAllCategories();
-        res.render('categories', { categories: categories });
+        res.render('categories', {
+            title: 'Categories',
+            categories: categories,
+        });
     } catch (error) {
         console.log(error.message);
-        res.render('error');
+        serverError(res);
     }
 };
 
+const getNewCategorie = async (req, res) => {
+    try {
+        res.render('newCategorie', { title: 'Create categorie' });
+    } catch (error) {
+        console.log(error.message);
+        serverError(res);
+    }
+};
+
+const validadeNewCategorie = [
+    body('name')
+        .trim()
+        .isLength({ min: 3, max: 50 })
+        .withMessage('Name must be between 3 and 50 characters')
+        .custom(async (value) => {
+            const category = await db.getCategoryByName(value);
+            if (category) {
+                throw new Error('Category name already in use');
+            }
+            return true;
+        }),
+    body('description')
+        .trim()
+        .isLength({ min: 1 })
+        .withMessage('Description is too short (min 1 chars)')
+        .isLength({ max: 200 })
+        .withMessage('Description is too long (max 200 chars)'),
+];
+
+const postNewCategorie = [
+    validadeNewCategorie,
+    async (req, res) => {
+        try {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).render('newCategorie', {
+                    title: 'Create categorie',
+                    errors: errors.array(),
+                });
+            }
+
+            const { name, description } = matchedData(req);
+
+            await db.addCategorie(name, description);
+            res.redirect('/categories');
+        } catch (error) {
+            console.log(error.message);
+            serverError(res);
+        }
+    },
+];
+
+const getErrorPage = (req, res) => {
+    res.status(404).render('error', {
+        title: 'Error 404',
+        errorCode: '404',
+        errorMessage: 'Page Not Found ',
+        errorDetails:
+            "The page you're looking for was moved, deleted, or never existed in our server.",
+    });
+    return;
+};
+
+function serverError(res) {
+    res.status(500).render('error', {
+        title: 'Error 500',
+        errorCode: '500',
+        errorMessage: ' Internal Server Error !',
+        errorDetails:
+            'The server encountered an internal error or misconfiguration and was unable to complete your request.',
+    });
+    return;
+}
+
 module.exports = {
     getAllCategories,
+    getNewCategorie,
+    postNewCategorie,
+    getErrorPage,
 };
