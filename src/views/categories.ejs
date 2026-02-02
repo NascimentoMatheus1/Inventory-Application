@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+    <body>
+        <h1>categories page</h1>
+        <a href="/">Home</a>
+
+        <ul>
+            <% categories.map((item)=> { %>
+                <li>
+                    <%= item.name %>
+                </li>
+            <% })%>
+        </ul>
+
+    </body>
+
+</html>
