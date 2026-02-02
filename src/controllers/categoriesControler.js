@@ -14,6 +14,42 @@ const getAllCategories = async (req, res) => {
     }
 };
 
+const getCategory = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (isNaN(Number(id))) {
+            return res.status(400).render('error', {
+                title: 'Error 400',
+                errorCode: '400',
+                errorMessage: ' Bad Request ',
+                errorDetails:
+                    'the server cannot or will not process the request because something about it is a client error.',
+            });
+        }
+
+        const category = await db.getCategoryByID(id);
+
+        if (!category) {
+            return res.status(404).render('error', {
+                title: 'Error 404',
+                errorCode: '404',
+                errorMessage: 'Page Not Found ',
+                errorDetails:
+                    "The page you're looking for was moved, deleted, or never existed in our server.",
+            });
+        }
+
+        res.render('categoryDetail', {
+            title: 'Category Detail',
+            category,
+        });
+    } catch (error) {
+        console.log(error.message);
+        serverError(res);
+    }
+};
+
 const getNewCategorie = async (req, res) => {
     try {
         res.render('newCategorie', { title: 'Create categorie' });
@@ -90,6 +126,7 @@ function serverError(res) {
 
 module.exports = {
     getAllCategories,
+    getCategory,
     getNewCategorie,
     postNewCategorie,
     getErrorPage,

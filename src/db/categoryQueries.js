@@ -5,6 +5,14 @@ async function getAllCategories() {
     return rows;
 }
 
+async function getCategoryByID(id) {
+    const { rows } = await pool.query(
+        'SELECT * FROM categories WHERE id = ($1)',
+        [id],
+    );
+    return rows[0];
+}
+
 async function getCategoryByName(name) {
     const { rows } = await pool.query(
         'SELECT * FROM categories WHERE name = ($1)',
@@ -24,5 +32,6 @@ async function addCategorie(name, description) {
 module.exports = {
     getAllCategories,
     getCategoryByName,
+    getCategoryByID,
     addCategorie,
 };
