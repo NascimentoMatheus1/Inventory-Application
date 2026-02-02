@@ -1,3 +1,48 @@
 body {
-    text-align: center;
+    margin: 0;
+    font-family: sans-serif;
+    background: #fff;
 }
+
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 1rem 5%;
+    border-bottom: 1px solid #eee;
+}
+
+.logo a {
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-item {
+    text-decoration: none;
+    color: #555;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    color: #000;
+}
+
+.hero {
+    text-align: center;
+    padding: 100px 20px;
+}
+
+.content {
+    padding: 40px 5%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* --------------------- Products page -------------------------------- */

@@ -3,10 +3,16 @@
 <%- include('./partials/head') %>
 
     <body>
-        <h1>Index page</h1>
-        <a href="/categories">see all categories</a>
-        <br>
-        <a href="/products"> see all products</a>
+        <%- include('./partials/navBar') %>
+            <main class="hero">
+                <h1>Welcome to the Store</h1>
+                <p>Find exactly what you need.</p>
+
+                <a href="/products" class="nav-item">Products</a>
+                <a href="/categories" class="nav-item">Categories</a>
+
+            </main>
+
     </body>
 
 </html>
