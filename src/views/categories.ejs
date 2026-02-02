@@ -5,14 +5,14 @@
     <body>
         <%- include('./partials/navBar') %>
             <main class="container">
-                <h1>Shop by Category</h1>
+                <h1>Our Categories</h1>
                 <a href="/categories/new" class="btn-add-main">
                     <span>+</span> Add New Categorie
                 </a>
                 <div class="category-grid">
                     <% categories.map((item)=> { %>
-                        <a href="#" class="category-card">
-                            <img src="<%= item.image_url %>" alt="<%= item.name %>">
+                        <a href="/products?category=<%= item.name %>" class="category-card">
+                            <img src="/assets/category.svg" alt="<%= item.name %>">
                             <div class="category-overlay">
                                 <h2>
                                     <%= item.name %>
