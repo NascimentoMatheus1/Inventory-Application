@@ -3,17 +3,25 @@
 <%- include('./partials/head') %>
 
     <body>
-        <h1>categories page</h1>
-        <a href="/">Home</a>
-
-        <ul>
-            <% categories.map((item)=> { %>
-                <li>
-                    <%= item.name %>
-                </li>
-            <% })%>
-        </ul>
-
+        <%- include('./partials/navBar') %>
+            <main class="container">
+                <h1>Shop by Category</h1>
+                <a href="/categories/new" class="btn-add-main">
+                    <span>+</span> Add New Categorie
+                </a>
+                <div class="category-grid">
+                    <% categories.map((item)=> { %>
+                        <a href="#" class="category-card">
+                            <img src="<%= item.image_url %>" alt="<%= item.name %>">
+                            <div class="category-overlay">
+                                <h2>
+                                    <%= item.name %>
+                                </h2>
+                            </div>
+                        </a>
+                        <% })%>
+                </div>
+            </main>
     </body>
 
 </html>
