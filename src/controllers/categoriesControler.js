@@ -1,6 +1,7 @@
 const db = require('../db/categoryQueries');
 const { body, validationResult, matchedData } = require('express-validator');
 
+// GET (read all)
 const getAllCategories = async (req, res) => {
     try {
         const categories = await db.getAllCategories();
@@ -40,6 +41,10 @@ const getCategory = async (req, res) => {
     }
 };
 
+const getErrorPage = (req, res) => {
+    notFoundPage(res);
+};
+
 const getNewCategorie = async (req, res) => {
     try {
         res.render('newCategorie', { title: 'Create categorie' });
@@ -48,6 +53,26 @@ const getNewCategorie = async (req, res) => {
         serverError(res);
     }
 };
+
+const getEditCategorie = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const category = await db.getCategoryByID(id);
+
+        if (!category) {
+            notFoundPage(res);
+            return;
+        }
+
+        res.render('editCategorie', { title: 'Update Category', category });
+    } catch (error) {
+        console.log(error.message);
+        serverError(res);
+    }
+};
+
+// POST (Add category)
 
 const validadeNewCategorie = [
     body('name')
@@ -92,6 +117,37 @@ const postNewCategorie = [
     },
 ];
 
+// POST (Edit category)
+
+const postEditCategory = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        const category = await db.getCategoryByID(id);
+
+        if (!category) {
+            notFoundPage(res);
+            return;
+        }
+
+        const { name, description } = req.body;
+
+        const result = await db.updateCategory(name, description, id);
+
+        if (!result) {
+            badRequestPage();
+            return;
+        }
+
+        res.redirect('/categories');
+    } catch (error) {
+        console.log(error.message);
+        serverError(res);
+    }
+};
+
+// DELETE (remove category route)
+
 const deleteCategory = async (req, res) => {
     try {
         const { id } = req.params;
@@ -129,9 +185,7 @@ const deleteCategory = async (req, res) => {
     }
 };
 
-const getErrorPage = (req, res) => {
-    notFoundPage(res);
-};
+// Internal functions to render error pages;
 
 function serverError(res) {
     res.status(500).render('error', {
@@ -171,4 +225,6 @@ module.exports = {
     postNewCategorie,
     getErrorPage,
     deleteCategory,
+    getEditCategorie,
+    postEditCategory,
 };
