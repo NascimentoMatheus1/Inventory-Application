@@ -4,9 +4,9 @@
 
     <body>
         <%- include('./partials/navBar') %>
-            <div class="category-detail-container">
+            <div class="item-detail-container">
                 <h1>Category Details</h1>
-                <div class="category-detail">
+                <div class="item-detail">
                     <div class="imageContainer">
                         <img src="/assets/category-v2.svg" alt="category icon">
                     </div>
@@ -16,7 +16,7 @@
                     <p>
                         <%= category.description %>
                     </p>
-                    <div class="category-actions">
+                    <div class="item-actions">
                         <a href="/categories/update/<%= category.id %>" class="btn btn-update">Update</a>
                         <a href="/categories/delete/<%= category.id %>" class="btn btn-delete"
                             onclick="return confirm('Are you sure you want to delete this category?')">Delete</a>

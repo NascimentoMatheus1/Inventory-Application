@@ -331,9 +331,9 @@ body {
     margin-bottom: 0.25rem;
 }
 
-/* --------------- Category Detail --------------------  */
+/* --------------- Items Detail --------------------  */
 
-.category-detail-container {
+.item-detail-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -343,7 +343,7 @@ body {
     padding: 1rem 2rem;
 }
 
-.category-detail {
+.item-detail {
     margin-top: 1rem;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -351,11 +351,11 @@ body {
     width: 100%;
     max-width: 500px;
 }
-.category-detail h3 {
+.item-detail h3 {
     font-size: 2rem;
     text-align: center;
 }
-.category-detail p {
+.item-detail p {
     color: #666;
     font-size: 1.2rem;
     line-height: 1.5;
@@ -372,7 +372,7 @@ body {
     height: 100%;
 }
 
-.category-actions {
+.item-actions {
     display: flex;
     gap: 10px;
 }
