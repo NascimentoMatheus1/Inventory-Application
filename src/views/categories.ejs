@@ -6,21 +6,22 @@
         <%- include('./partials/navBar') %>
             <main class="container">
                 <h1>Our Categories</h1>
-                <a href="/categories/new" class="btn-add-main">
-                    <span>+</span> Add New Categorie
-                </a>
-                <div class="category-grid">
-                    <% categories.map((item)=> { %>
-                        <a href="/categories/<%= item.id %>" class="category-card">
-                            <img src="/assets/category.svg" alt="<%= item.name %>">
-                            <div class="category-overlay">
-                                <h2>
-                                    <%= item.name %>
-                                </h2>
-                            </div>
-                        </a>
-                        <% })%>
-                </div>
+                <%- include("partials/formValidationList.ejs") %>
+                    <a href="/categories/new" class="btn-add-main">
+                        <span>+</span> Add New Categorie
+                    </a>
+                    <div class="category-grid">
+                        <% categories.map((item)=> { %>
+                            <a href="/categories/<%= item.id %>" class="category-card">
+                                <img src="/assets/category.svg" alt="<%= item.name %>">
+                                <div class="category-overlay">
+                                    <h2>
+                                        <%= item.name %>
+                                    </h2>
+                                </div>
+                            </a>
+                            <% })%>
+                    </div>
             </main>
     </body>
 
