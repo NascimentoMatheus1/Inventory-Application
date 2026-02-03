@@ -13,6 +13,14 @@ async function getCategoryByID(id) {
     return rows[0];
 }
 
+async function deleteCategoryByID(id) {
+    const { rows } = await pool.query(
+        'DELETE FROM categories WHERE id = ($1)',
+        [id],
+    );
+    return rows[0];
+}
+
 async function getCategoryByName(name) {
     const { rows } = await pool.query(
         'SELECT * FROM categories WHERE name = ($1)',
@@ -29,9 +37,22 @@ async function addCategorie(name, description) {
     return rows;
 }
 
+async function getAllProductsFromCategory(id) {
+    const { rows } = await pool.query(
+        `SELECT products.name FROM categories
+        INNER JOIN products 
+        ON (categories.id = products.categorie_id)
+        WHERE categories.id = ($1);`,
+        [id],
+    );
+    return rows;
+}
+
 module.exports = {
     getAllCategories,
     getCategoryByName,
     getCategoryByID,
     addCategorie,
+    deleteCategoryByID,
+    getAllProductsFromCategory,
 };

@@ -92,6 +92,43 @@ const postNewCategorie = [
     },
 ];
 
+const deleteCategory = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (isNaN(Number(id))) {
+            badRequestPage(res);
+            return;
+        }
+
+        const products = await db.getAllProductsFromCategory(id);
+
+        if (products.length === 0) {
+            await db.deleteCategoryByID(id);
+            res.redirect('/categories');
+            return;
+        }
+
+        const categories = await db.getAllCategories();
+        const errors = [
+            {
+                msg: 'Cannot delete this category because it still contains products.',
+            },
+            {
+                msg: 'Please move or delete all products in this category before trying to remove it.',
+            },
+        ];
+        res.render('categories', {
+            title: 'Categories',
+            categories,
+            errors,
+        });
+    } catch (error) {
+        console.log(error.message);
+        serverError(res);
+    }
+};
+
 const getErrorPage = (req, res) => {
     notFoundPage(res);
 };
@@ -133,4 +170,5 @@ module.exports = {
     getNewCategorie,
     postNewCategorie,
     getErrorPage,
+    deleteCategory,
 };
