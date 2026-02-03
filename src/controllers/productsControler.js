@@ -1,12 +1,13 @@
-const db = require('../db/queries');
+const db = require('../db/productQueries');
 
 const getAllProducts = async (req, res) => {
     try {
         const products = await db.getAllProducts();
-        res.render('products', { products: products });
+        const categories = await db.getAllCategories();
+        res.render('products', { title: 'All products', products, categories });
     } catch (error) {
         console.log(error.message);
-        res.render('error');
+        res.render('error', { title: 'Error' });
     }
 };
 
