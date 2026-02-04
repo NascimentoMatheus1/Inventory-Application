@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head') %>
+
+    <body>
+        <%- include('./partials/navBar') %>
+            <div class="item-detail-container">
+                <h1>Product Details</h1>
+                <div class="item-detail">
+                    <div class="imageContainer">
+                        <img src="/assets/product-v2.svg" alt="product icon">
+                    </div>
+                    <h3>
+                        <%= product.name %>
+                    </h3>
+                    <p><strong>Category:</strong>
+                        <%= product.category %>
+                    </p>
+                    <p>
+                        <strong> Description: </strong>
+                        <%= product.description %>
+                    </p>
+                    <p>
+                        <strong>Sale price: </strong>
+                        $ <%= product.sale_price %>
+                    </p>
+                    <p><strong>Current stock:</strong>
+                        <%= product.current_stock %>
+                    </p>
+                
+                    <div class="item-actions">
+                        <a href="/product/update/<%= product.id %>" class="btn btn-update">Update</a>
+                        <a href="/product/delete/<%= product.id %>" class="btn btn-delete"
+                            onclick="return confirm('Are you sure you want to delete this product?')">Delete</a>
+                    </div>
+                </div>
+            </div>
+    </body>
+
+</html>

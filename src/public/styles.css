@@ -148,6 +148,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     transition: box-shadow 0.3s;
+    cursor: pointer;
 }
 
 .product-card:hover {
@@ -356,7 +357,7 @@ body {
     text-align: center;
 }
 .item-detail p {
-    color: #666;
+    color: black;
     font-size: 1.2rem;
     line-height: 1.5;
     margin-bottom: 16px;
