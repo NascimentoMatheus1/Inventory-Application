@@ -7,7 +7,7 @@ async function getAllProducts() {
 
 async function getProductInfoByID(id) {
     const { rows } = await pool.query(
-        `SELECT distinct p.name, p.description, p.current_stock, p.sale_price, c.name as category 
+        `SELECT distinct p.id, p.name, p.description, p.current_stock, p.sale_price, c.name as category 
         FROM categories AS c
         LEFT JOIN products AS p 
         ON (c.id = p.categorie_id) 
@@ -42,9 +42,16 @@ async function addProduct(
     return rows[0];
 }
 
+async function deleteProductByID(id) {
+    const { rows } = await pool.query(`DELETE FROM products WHERE id = ($1);`, [
+        id,
+    ]);
+}
+
 module.exports = {
     getAllProducts,
     getAllCategories,
     getProductInfoByID,
     addProduct,
+    deleteProductByID,
 };
