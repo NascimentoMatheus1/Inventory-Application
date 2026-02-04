@@ -276,7 +276,8 @@ body {
 }
 
 .form-group input,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 6px;
