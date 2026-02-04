@@ -40,7 +40,7 @@
                 </header>
                 <div class="product-grid">
                     <% products.map((item)=> { %>
-                        <div class="product-card">
+                        <div onclick="goToDetails('<%= item.id %>')" class="product-card">
                             <img src="/assets/product.svg" alt="<%= item.name %> Icon">
                             <div class="product-info">
                                 <h2 class="name">
@@ -55,6 +55,11 @@
                         <% })%>
                 </div>
             </main>
+            <script>
+                function goToDetails(id) {
+                    window.location.href = `/products/${id}`;
+                } 
+            </script>
     </body>
 
 </html>
