@@ -81,7 +81,7 @@ const postSaveProduct = [
         try {
             const errors = validationResult(req);
             const categories = await db.getAllCategories();
-            
+
             if (!errors.isEmpty()) {
                 return res.status(400).render('newProduct', {
                     title: 'Add new Product',
@@ -115,9 +115,30 @@ const postSaveProduct = [
     },
 ];
 
+// DELETE ROUTE
+
+const deleteProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (isNaN(Number(id))) {
+            badRequestPage(res);
+            return;
+        }
+
+        await db.deleteProductByID(id);
+
+        res.redirect('/products');
+    } catch (error) {
+        console.log(error.message);
+        serverError(res);
+    }
+};
+
 module.exports = {
     getAllProducts,
     getProduct,
     getNewForm,
     postSaveProduct,
+    deleteProduct,
 };
