@@ -19,15 +19,32 @@ async function getProductInfoByID(id) {
 
 async function getAllCategories() {
     const { rows } = await pool.query(
-        `SELECT distinct categories.name FROM categories
+        `SELECT distinct categories.name, categories.id FROM categories
         LEFT JOIN products 
         ON (categories.id = products.categorie_id);`,
     );
     return rows;
 }
 
+async function addProduct(
+    name,
+    sale_price,
+    current_stock,
+    description,
+    category_id,
+) {
+    const { rows } = await pool.query(
+        `INSERT INTO products (name, sale_price, current_stock, description, categorie_id)
+            VALUES (($1), ($2), ($3), ($4), ($5)) RETURNING *
+        `,
+        [name, sale_price, current_stock, description, category_id],
+    );
+    return rows[0];
+}
+
 module.exports = {
     getAllProducts,
     getAllCategories,
     getProductInfoByID,
+    addProduct,
 };
