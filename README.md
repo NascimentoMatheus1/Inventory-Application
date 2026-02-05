@@ -1,4 +1,4 @@
-# 📦 Inventory Management System [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)]()
+# 📦 Inventory Management System [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/README.pt-br.md)
 
 A full-stack CRUD application built with Node.js, Express, and PostgreSQL. This project was developed as part of the NodeJS course to practice database relations and server-side rendering with EJS.
 
@@ -10,36 +10,36 @@ A full-stack CRUD application built with Node.js, Express, and PostgreSQL. This 
 
 # 🚀Live Demo:
 
-You can explore the live application at the link this link 👉 [🔥 Live Demo]()
+You can explore the live application at the link this link 👉 [🔥 Live Demo](https://inventory-application-68mm.onrender.com)
 
 # 📸 Preview
 
 Home page:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/home-page.png)
 
 Categories page:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/categories-page.png)
 
 Category Detail page:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/category-details-page.png)
 
 Category Create page:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/category-create-page.png)
 
 Category Edit page:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/category-edit-page.png)
 
 Products page:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/products-page.png)
 
 Product Detail page:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/products-details-page.png)
 
-Product Create page:
-![image.alt]()
+Product Add page:
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/products-add-page.png)
 
-Product Edit page:
-![image.alt]()
+Product Update page:
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/products-update-page.png)
 
 # 🛠 Features
 
