@@ -43,12 +43,46 @@ const getProduct = async (req, res) => {
 const getNewForm = async (req, res) => {
     try {
         const categories = await db.getAllCategories();
-        res.render('newProduct', { title: 'Add new Product', categories });
+        res.render('productForm', {
+            title: 'Add new Product',
+            categories,
+            product: null,
+        });
     } catch (error) {
         console.log(error.message);
         serverError(res);
     }
 };
+
+const getEditForm = async (req, res) => {
+    try {
+        const { id } = req.params;
+
+        if (isNaN(Number(id))) {
+            badRequestPage(res);
+            return;
+        }
+
+        const product = await db.getProductInfoByID(id);
+
+        if (!product) {
+            notFoundPage(res);
+            return;
+        }
+
+        const categories = await db.getAllCategories();
+        res.render('productForm', {
+            title: 'Edit Product',
+            categories,
+            product,
+        });
+    } catch (error) {
+        console.log(error.message);
+        serverError(res);
+    }
+};
+
+// POST ROUTES
 
 const validateNewProduct = [
     body('name')
@@ -73,20 +107,65 @@ const validateNewProduct = [
         .withMessage('Current Stock must be less than 10000'),
 ];
 
-// POST ROUTES
+const postUpdateProduct = [
+    validateNewProduct,
+    async (req, res) => {
+        try {
+            const { id } = req.params;
+
+            const errors = validationResult(req);
+            
+            if (!errors.isEmpty()) {
+                const product = await db.getProductInfoByID(id);
+                const categories = await db.getAllCategories();
+                return res.status(400).render('productForm', {
+                    title: 'Add new Product',
+                    categories,
+                    errors: errors.array(),
+                    product,
+                });
+            }
+
+            const { name, sale_price, current_stock, description } =
+                matchedData(req);
+
+            const { category_id } = req.body;
+
+            const result = await db.updateProduct(
+                name,
+                sale_price,
+                current_stock,
+                description,
+                category_id,
+                id,
+            );
+
+            if (!result) {
+                notFoundPage(res);
+                return;
+            }
+
+            res.redirect('/products');
+        } catch (error) {
+            console.log(error.message);
+            serverError(res);
+        }
+    },
+];
 
 const postSaveProduct = [
     validateNewProduct,
     async (req, res) => {
         try {
             const errors = validationResult(req);
-            const categories = await db.getAllCategories();
-
+            
             if (!errors.isEmpty()) {
-                return res.status(400).render('newProduct', {
+                const categories = await db.getAllCategories();
+                return res.status(400).render('productForm', {
                     title: 'Add new Product',
                     categories,
                     errors: errors.array(),
+                    product: null,
                 });
             }
 
@@ -139,6 +218,8 @@ module.exports = {
     getAllProducts,
     getProduct,
     getNewForm,
+    getEditForm,
     postSaveProduct,
+    postUpdateProduct,
     deleteProduct,
 };
