@@ -8,9 +8,53 @@ const {
 
 const getAllProducts = async (req, res) => {
     try {
-        const products = await db.getAllProducts();
-        const categories = await db.getAllCategories();
-        res.render('products', { title: 'All products', products, categories });
+        const { sort, category } = req.query;
+
+        let products = null;
+        let categories = null;
+
+        const selectItemsSort = [
+            { value: 'name_asc', option: 'Name (A-Z)' },
+            { value: 'name_desc', option: 'Name (Z-A)' },
+            { value: 'price_low', option: 'Price (Low to High)' },
+            { value: 'price_high', option: 'Price (High to Low)' },
+        ];
+        let optionChosenSort = sort;
+        let optionChosenFilter = category;
+
+        if (!sort && !category) {
+            products = await db.getAllProducts();
+        }
+
+        if (sort || category) {
+            let orderBy = '';
+            let categoryName = category === 'all' ? '%%' : category;
+
+            switch (sort) {
+                case 'name_desc':
+                    orderBy = 'LOWER(products.name) DESC';
+                    break;
+                case 'price_low':
+                    orderBy = 'products.sale_price ASC';
+                    break;
+                case 'price_high':
+                    orderBy = 'products.sale_price DESC';
+                    break;
+                default:
+                    orderBy = 'LOWER(products.name) ASC';
+            }
+            products = await db.filterAndSortProducts(categoryName, orderBy);
+        }
+
+        categories = await db.getAllCategories();
+        res.render('products', {
+            title: 'Products',
+            products,
+            categories,
+            selectItemsSort,
+            optionChosenSort,
+            optionChosenFilter,
+        });
     } catch (error) {
         console.log(error.message);
         serverError(res);
@@ -114,7 +158,7 @@ const postUpdateProduct = [
             const { id } = req.params;
 
             const errors = validationResult(req);
-            
+
             if (!errors.isEmpty()) {
                 const product = await db.getProductInfoByID(id);
                 const categories = await db.getAllCategories();
@@ -158,7 +202,7 @@ const postSaveProduct = [
     async (req, res) => {
         try {
             const errors = validationResult(req);
-            
+
             if (!errors.isEmpty()) {
                 const categories = await db.getAllCategories();
                 return res.status(400).render('productForm', {
