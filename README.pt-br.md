@@ -1,45 +1,44 @@
-# 📦 Sistema de Gerenciamento de Inventário [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)]()
+# 📦 Sistema de Gerenciamento de Inventário [![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/NascimentoMatheus1/Inventory-Application/blob/65add97a60154fd8fa11d5236df6866f7a5c16f8/README.md)
 
 Uma aplicação CRUD full-stack construída com Node.js, Express e PostgreSQL. Este projeto foi desenvolvido como parte do curso de NodeJS para praticar relações de banco de dados e renderização no lado do servidor com EJS.
 
 # 🌐 Deploy (Hospedagem)
-
-- Backend: Node.js/Express hosted on Render (Free Tier).
-- Database: PostgreSQL hosted on Neon platform.
-- **This project is on a free server that hibernates during inactivity. Please be patient for about a minute while it boots up**
+- Backend: Node.js/Express hospedado no Render (Plano Gratuito).
+- Banco de Dados: PostgreSQL hospedado na plataforma Neon.
+- **Nota: Este projeto está em um servidor gratuito que "hiberna" após períodos de inatividade. Por favor, aguarde cerca de um minuto para o carregamento inicial enquanto o servidor desperta**
 
 # 🚀 Demonstração ao Vivo
 
-Você pode explorar a aplicação no link 👉 [🔥 Live Demo]()
+Você pode explorar a aplicação no link 👉 [🔥 Live Demo](https://inventory-application-68mm.onrender.com)
 
 # 📸 Visualização
 
 Home pagina:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/home-page.png)
 
 Categorias pagina:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/categories-page.png)
 
 Detalhes Categoria pagina:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/category-details-page.png)
 
 Criar Categoria pagina:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/category-create-page.png)
 
 Categoria Editar pagina:
-![image.alt]()
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/category-edit-page.png)
 
-pagina Produtos:
-![image.alt]()
+Pagina Produtos:
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/products-page.png)
 
-pagina Produto detalhes :
-![image.alt]()
+Pagina Produto detalhes :
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/products-details-page.png)
 
-criar produto pagina:
-![image.alt]()
+Adicionar produto pagina:
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/products-add-page.png)
 
-Editar produto pagina:
-![image.alt]()
+Atualizar produto pagina:
+![image.alt](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/readme_images/products-update-page.png)
 
 # 🛠 Funcionalidades
 
