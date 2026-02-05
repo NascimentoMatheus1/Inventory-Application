@@ -68,6 +68,20 @@ async function deleteProductByID(id) {
     ]);
 }
 
+async function filterAndSortProducts(category, sort) {
+    const { rows } = await pool.query(
+        `
+            SELECT products.id, products.name, products.sale_price, products.current_stock from products 
+            LEFT JOIN categories 
+            ON (products.categorie_id=categories.id)
+            WHERE categories.name LIKE $1
+            ORDER BY ${sort};
+        `,
+        [category],
+    );
+    return rows;
+}
+
 module.exports = {
     getAllProducts,
     getAllCategories,
@@ -75,4 +89,5 @@ module.exports = {
     addProduct,
     deleteProductByID,
     updateProduct,
+    filterAndSortProducts,
 };
