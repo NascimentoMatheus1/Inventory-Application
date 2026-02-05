@@ -1,4 +1,4 @@
-# 📦 Inventory Management System [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/NascimentoMatheus1/Inventory-Application/blob/548a64bc4a795a43de3359f54dc6520fd8a768d3/README.pt-br.md)
+# 📦 Inventory Management System [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](https://github.com/NascimentoMatheus1/Inventory-Application/blob/5d1ad9170a0f9d3683a75f71cb82e1125456b0c5/README.pt-br.md)
 
 A full-stack CRUD application built with Node.js, Express, and PostgreSQL. This project was developed as part of the NodeJS course to practice database relations and server-side rendering with EJS.
 
