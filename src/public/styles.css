@@ -397,6 +397,7 @@ body {
 .btn-delete {
     border: 1px solid #dc3545;
     color: #dc3545;
+    cursor: pointer;
 }
 
 .btn:hover {
