@@ -62,10 +62,3 @@ The application uses two main entities with a One-to-Many relationship: one cate
 Tables:
 - Categories: id, name, description.
 - Products: id, name, description, sale_price, current_stock, category_id.
-
-# 💻 Tech Stack
-
-- Backend: Node.js, Express.js
-- Database: PostgreSQL (using pg pool)
-- View Engine: EJS (Embedded JavaScript)
-- Styling: CSS3
